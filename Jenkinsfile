@@ -21,7 +21,8 @@ pipeline {
                 }
                 
                 
-                echo 'currentBuild.currentResult'
+                echo "${currentBuild.currentResult}"
+                sh "exit 1"
             }
             
             post {
