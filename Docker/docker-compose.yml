@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+ chat-build:
+  container_name: chat
+  image: chat:latest
+  build:
+   context: ./
+   dockerfile: Dockerfile_chat_build
+ chat-test:
+  container_name: chat_test
+  image: chat_test:latest
+  build:
+   context: ./
+   dockerfile: Dockerfile_chat_test
+
