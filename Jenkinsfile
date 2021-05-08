@@ -9,18 +9,15 @@ pipeline {
 
                 echo 'Building app'
              
-                git credentialsId: 'git_credentials', url: 'https://github.com/kjop118/deltachat-desktop'
-                dir('Docker'){
-                
-                  
+               git branch: 'Grupa02-KJ306450_Lab07', url: 'https://github.com/InzynieriaOprogramowaniaAGH/MIFT2021'
+                dir('Grupy/Grupa02/KJ306450/Lab07/Docker'){
+                    
                     sh '''
-                        ls
                         curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
                         chmod +x ~/docker-compose
                         ~/docker-compose up -d chat-build
-                        
-                    '''
-                
+                    ''' 
+
                 }
             }
         }
