@@ -6,7 +6,6 @@ pipeline {
         stage('Build'){
 
             steps{
-
                 echo 'Building app'
              
                 git credentialsId: 'git_credentials', url: 'https://github.com/kjop118/deltachat-desktop'
@@ -17,7 +16,6 @@ pipeline {
                         chmod +x ~/docker-compose
                         ~/docker-compose up -d chat-build
                     ''' 
-
                 }
 
             }
@@ -48,14 +46,11 @@ More informations in attachment""",
         stage('Test') {
             
             steps{
-                
-
                 echo 'Start testing'
+                
                 dir('Docker'){
                     sh '~/docker-compose up -d chat-test'
                 }
-                
-                sh "exit 1"
             }
             
             post {
