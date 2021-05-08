@@ -9,8 +9,8 @@ pipeline {
 
                 echo 'Building app'
              
-               git branch: 'Grupa02-KJ306450_Lab07', url: 'https://github.com/InzynieriaOprogramowaniaAGH/MIFT2021'
-                dir('Grupy/Grupa02/KJ306450/Lab07/Docker'){
+                git credentialsId: 'git_credentials', url: 'https://github.com/kjop118/deltachat-desktop'
+                dir('Docker'){
                     
                     sh '''
                         curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
