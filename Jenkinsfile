@@ -28,7 +28,7 @@ pipeline {
             
             steps{
                 
-                catch(currentBuild.currentResult == "FAILURE"){
+                if(currentBuild.currentResult == "FAILURE"){
                     sh 'exit 1'
                 }
                 echo 'Start testing'
