@@ -19,12 +19,18 @@ pipeline {
                     ''' 
 
                 }
+                
+                echo 'currentBuild.currentResult'
             }
         }
         
         stage('Test') {
             
             steps{
+                
+                catch(currentBuild.currentResult == "FAILURE"){
+                    sh 'exit 1'
+                }
                 echo 'Start testing'
                 dir('Docker'){
                     sh '~/docker-compose up -d chat-test'
