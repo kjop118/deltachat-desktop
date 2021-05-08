@@ -19,10 +19,7 @@ pipeline {
                     ''' 
 
                 }
-                
-                
-                echo "${currentBuild.currentResult}"
-                sh "exit 1"
+
             }
             
             post {
@@ -57,6 +54,8 @@ More informations in attachment""",
                 dir('Docker'){
                     sh '~/docker-compose up -d chat-test'
                 }
+                
+                sh "exit 1"
             }
             
             post {
