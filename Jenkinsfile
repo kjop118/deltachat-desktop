@@ -28,8 +28,8 @@ pipeline {
                     success {
                         emailext attachLog: true, 
                             body: """Build status: ${currentBuild.currentResult},
-                            Job: ${env.JOB_NAME},
-                            More informations in attachment""", 
+Job: ${env.JOB_NAME},
+More informations in attachment""", 
                             recipientProviders: [developers()], 
                             subject: 'Build passed', 
                             to: 'jkarolina1@interia.pl'
@@ -38,8 +38,8 @@ pipeline {
                     failure {
                         emailext attachLog: true, 
                             body: """Build status: ${currentBuild.currentResult},
-                            Job: ${env.JOB_NAME},
-                            More informations in attachment""", 
+Job: ${env.JOB_NAME},
+More informations in attachment""", 
                             recipientProviders: [developers()], 
                             subject: 'Build failed', 
                             to: 'jkarolina1@interia.pl'
@@ -63,8 +63,8 @@ pipeline {
                 success {
                     emailext attachLog: true, 
                         body: """Test status: ${currentBuild.currentResult},
-                        Job ${env.JOB_NAME}, 
-                        More informations in attachment""", 
+Job ${env.JOB_NAME}, 
+More informations in attachment""", 
                         recipientProviders: [developers()], 
                         subject: 'Test passed', 
                         to: 'jkarolina1@interia.pl'
@@ -73,8 +73,8 @@ pipeline {
                 failure {
                     emailext attachLog: true, 
                         body: """Test status: ${currentBuild.currentResult},
-                        Job ${env.JOB_NAME}, 
-                        More informations in attachment""", 
+Job ${env.JOB_NAME}, 
+More informations in attachment""", 
                         recipientProviders: [developers()], 
                         subject: 'Test failed', 
                         to: 'jkarolina1@interia.pl'
@@ -89,20 +89,20 @@ pipeline {
         success {
             emailext attachLog: true, 
                 body: """Pipeline status: ${currentBuild.currentResult},
-                Job ${env.JOB_NAME}, 
-                More informations in attachment""", 
+Job ${env.JOB_NAME}, 
+More informations in attachment""", 
                 recipientProviders: [developers()], 
-                subject: 'Test passed', 
+                subject: 'Pipeline passed', 
                 to: 'jkarolina1@interia.pl'
         }
 
         failure {
             emailext attachLog: true, 
                 body: """Pipeline status: ${currentBuild.currentResult},
-                Job ${env.JOB_NAME},
-                More informations in attachment""", 
+Job ${env.JOB_NAME},
+More informations in attachment""", 
                 recipientProviders: [developers()], 
-                subject: 'Test failed', 
+                subject: 'Pipeline failed', 
                 to: 'jkarolina1@interia.pl'
         }
     }
