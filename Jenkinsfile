@@ -20,6 +20,23 @@ pipeline {
 
                 }
                 
+                post {
+                    success {
+                        emailext attachLog: true, 
+                            body: "Build status: ${currentBuild.currentResult}: Job ${env.JOB_NAME}, More informations in attachment", 
+                            recipientProviders: [developers()], 
+                            subject: 'Build passed', 
+                            to: 'jkarolina1@interia.pl'
+                    }
+
+                    failure {
+                        emailext attachLog: true, 
+                            body: "Build status: ${currentBuild.currentResult}: Job ${env.JOB_NAME}, More informations in attachment", 
+                            recipientProviders: [developers()], 
+                            subject: 'Build failed', 
+                            to: 'jkarolina1@interia.pl'
+                    }
+                }
                 echo 'currentBuild.currentResult'
             }
         }
@@ -28,9 +45,7 @@ pipeline {
             
             steps{
                 
-                if(currentBuild.currentResult == "FAILURE"){
-                    sh 'exit 1'
-                }
+
                 echo 'Start testing'
                 dir('Docker'){
                     sh '~/docker-compose up -d chat-test'
