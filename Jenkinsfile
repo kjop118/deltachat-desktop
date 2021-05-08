@@ -20,7 +20,11 @@ pipeline {
 
                 }
                 
-                post {
+                
+                echo 'currentBuild.currentResult'
+            }
+            
+            post {
                     success {
                         emailext attachLog: true, 
                             body: "Build status: ${currentBuild.currentResult}: Job ${env.JOB_NAME}, More informations in attachment", 
@@ -37,8 +41,6 @@ pipeline {
                             to: 'jkarolina1@interia.pl'
                     }
                 }
-                echo 'currentBuild.currentResult'
-            }
         }
         
         stage('Test') {
