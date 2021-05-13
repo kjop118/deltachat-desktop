@@ -76,6 +76,37 @@ More informations in attachment""",
                 }
             }
         }
+
+
+        tage('Deploy') {
+            
+            steps{
+                echo 'Deploy'
+            }
+            
+            post {
+
+                success {
+                    emailext attachLog: true, 
+                        body: """Test status: ${currentBuild.currentResult},
+Job ${env.JOB_NAME}, 
+More informations in attachment""", 
+                        recipientProviders: [developers()], 
+                        subject: 'Deploy passed', 
+                        to: 'jkarolina1@interia.pl'
+                }
+
+                failure {
+                    emailext attachLog: true, 
+                        body: """Test status: ${currentBuild.currentResult},
+Job ${env.JOB_NAME}, 
+More informations in attachment""", 
+                        recipientProviders: [developers()], 
+                        subject: 'Deploy failed', 
+                        to: 'jkarolina1@interia.pl'
+                }
+            }
+        }
     }
 
     
