@@ -78,7 +78,7 @@ More informations in attachment""",
         }
 
 
-        tage('Deploy') {
+        stage('Deploy') {
             
             steps{
                 echo 'Deploy'
