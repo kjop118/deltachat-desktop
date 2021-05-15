@@ -1,4 +1,0 @@
-#!/bin/sh
-
-curl http://localhost:8080/git/notifyCommit?url=file:/home/karolina/Dokumenty/deltachat-desktop
-
