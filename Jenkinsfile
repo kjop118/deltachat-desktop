@@ -84,7 +84,7 @@ More informations in attachment""",
                 echo 'Deploying'
 
                 dir('Docker'){
-                    sh 'docker tag kjop118/chat:latest chat:latest'
+                    sh 'docker tag chat:latest kjop118/chat:latest'
                     sh 'docker images'
                 }
 
