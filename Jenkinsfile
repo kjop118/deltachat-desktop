@@ -86,14 +86,13 @@ More informations in attachment""",
                 dir('Docker'){
                     sh 'docker tag chat:latest kjop118/chat:latest'
                     sh 'docker images'
-                    //sh 'docker save -o /var/jenkins_home/workspace/my-chat-pipeline/Docker/chatBuild.tar kjop118/chat:latest'
-                    //sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .'
-                    sh 'docker run -it ubuntu-deploy bash'
-                    sh 'ls'
-                    //sh 'cp chatBuild.tar ubuntu-deploy:/tmp/'
-                    //sh 'docker cp /var/jenkins_home/workspace/my-chat-pipeline/Docker/chatBuild.tar ubuntu-deploy:/tmp/'
-                    //sh 'docker load -i /var/jenkins_home/workspace/my-chat-pipeline/Docker/chatBuild.tar'
-                    sh 'ls'
+                   
+                    sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .'
+                    sh 'docker run -d -t --name deploy ubuntu-deploy'
+                    sh 'docker save -o ./chatBuild.tar kjop118/chat:latest'
+                    sh 'docker cp ./chatBuild.tar deploy:/tmp/'
+                    sh 'docker load -i deploy:/tmp/chatBuild.tar'
+                    
                 }
 
                 
