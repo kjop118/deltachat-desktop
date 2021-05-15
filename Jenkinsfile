@@ -86,11 +86,11 @@ More informations in attachment""",
                 dir('Docker'){
                     sh 'docker tag chat:latest kjop118/chat:latest'
                     sh 'docker images'
-                    sh 'docker save -o /chatBuild.tar kjop118/chat:latest'
+                    sh 'docker save -o /var/jenkins_home/workspace/my-chat-pipeline/Docker/chatBuild.tar kjop118/chat:latest'
                     sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .'
                     sh 'docker run -d ubuntu-deploy'
-                    sh 'docker cp /chatBuild.tar ubuntu:deploy:/'
-                    sh 'docker load -i /chatBuild.tar'
+                    sh 'docker cp /var/jenkins_home/workspace/my-chat-pipeline/Docker/chatBuild.tar ubuntu:deploy:/'
+                    sh 'docker load -i /var/jenkins_home/workspace/my-chat-pipeline/Docker/chatBuild.tar'
                     sh 'ls'
                 }
 
