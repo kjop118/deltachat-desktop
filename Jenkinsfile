@@ -81,7 +81,14 @@ More informations in attachment""",
         stage('Deploy') {
             
             steps{
-                echo 'Deploy'
+                echo 'Deploying'
+
+                dir('Docker'){
+                    sh 'docker tag kjop118/chat:latest'
+                    sh 'docker images'
+                }
+
+                
             }
             
             post {
