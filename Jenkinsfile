@@ -86,7 +86,7 @@ More informations in attachment""",
                 dir('Docker'){
                     sh 'docker tag chat:latest kjop118/chat:latest'
                     sh 'docker images'
-                    sh 'ls'
+                    sh 'pwd'
                     //sh 'docker save -o /home/karolina/chatBuild.tar kjop118/chat:latest'
                 }
 
