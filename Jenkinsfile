@@ -85,13 +85,17 @@ More informations in attachment""",
 
                 dir('Docker'){
                     sh 'docker tag chat:latest kjop118/chat:latest'
-                    sh 'docker images'
                    
-                    sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .'
-                    sh 'docker run -d -t --name deploy ubuntu-deploy'
-                    sh 'docker save -o ./chatBuild.tar kjop118/chat:latest'
-                    sh 'docker cp ./chatBuild.tar deploy:/tmp/'  
-                }                
+                    //sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .'
+                    //sh 'docker run -d -t --name deploy ubuntu-deploy'
+
+                    sh 'docker save -o ./chatBuild.tar kjop118/chat:latest' //zapisanie obrazu
+                    
+                    //sh 'docker cp ./chatBuild.tar deploy:/tmp/'  //skopiowanie obrazu na nowy kontener
+
+                    //sh 'docker stop deploy'
+                }    
+                sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .' //zbudowanie kontenera, w którym znajduje się spakowany plik z obrazem            
             }
             
             post {
