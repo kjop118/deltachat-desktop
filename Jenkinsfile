@@ -91,7 +91,7 @@ More informations in attachment""",
                     sh 'docker run -d -t --name deploy ubuntu-deploy'
                     sh 'docker save -o ./chatBuild.tar kjop118/chat:latest'
                     sh 'docker cp ./chatBuild.tar deploy:/tmp/'
-                    sh 'docker load -i deploy:/tmp/chatBuild.tar'
+                    //sh 'docker load -i ./chatBuild.tar'
                     
                 }
 
