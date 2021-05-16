@@ -14,6 +14,6 @@ RUN add-apt-repository \
    $(lsb_release -cs) \
    stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
-USER user
+
 RUN apt-get update
 RUN apt-get install -y git
