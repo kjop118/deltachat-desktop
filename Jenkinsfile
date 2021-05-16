@@ -90,12 +90,8 @@ More informations in attachment""",
                     sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .'
                     sh 'docker run -d -t --name deploy ubuntu-deploy'
                     sh 'docker save -o ./chatBuild.tar kjop118/chat:latest'
-                    sh 'docker cp ./chatBuild.tar deploy:/tmp/'
-                    //sh 'docker load -i ./chatBuild.tar'
-                    
-                }
-
-                
+                    sh 'docker cp ./chatBuild.tar deploy:/tmp/'  
+                }                
             }
             
             post {
