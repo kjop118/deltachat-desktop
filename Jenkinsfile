@@ -90,12 +90,14 @@ More informations in attachment""",
                     //sh 'docker run -d -t --name deploy ubuntu-deploy'
 
                     sh 'docker save -o ./chatBuild.tar kjop118/chat:latest' //zapisanie obrazu
+                    sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .' //zbudowanie kontenera, w którym znajduje się spakowany plik z obrazem 
+
                     
                     //sh 'docker cp ./chatBuild.tar deploy:/tmp/'  //skopiowanie obrazu na nowy kontener
 
                     //sh 'docker stop deploy'
                 }    
-                sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .' //zbudowanie kontenera, w którym znajduje się spakowany plik z obrazem            
+                           
             }
             
             post {
