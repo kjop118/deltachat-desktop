@@ -8,7 +8,6 @@ pipeline {
             steps{
                 echo 'Building app'
              
-                git credentialsId: 'git_credentials', url: 'https://github.com/kjop118/deltachat-desktop'
                 dir('Docker'){
                     
                     sh '''
