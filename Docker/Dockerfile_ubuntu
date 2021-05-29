@@ -3,7 +3,7 @@ FROM ubuntu:latest
 RUN apt-get update
 RUN apt-get install -y git
 
-COPY . chat/
+COPY /var/jenkins_home/workspace/my-chat-pipeline chat/
 WORKDIR chat
 RUN ls
 
