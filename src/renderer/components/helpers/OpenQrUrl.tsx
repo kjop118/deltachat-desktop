@@ -16,6 +16,12 @@ import {
 import { Spinner } from '@blueprintjs/core'
 import { DialogProps } from '../dialogs/DialogController'
 import { runtime } from '../../runtime'
+import { parseMailto } from '../../../shared/parse_mailto'
+import MailtoDialog, { doMailtoAction } from '../dialogs/MailtoDialog'
+import { getLogger } from '../../../shared/logger'
+import { selectChat } from '../../stores/chat'
+
+const log = getLogger('renderer/processOpenUrl')
 
 export function ProcessQrCodeDialog({
   onCancel: _onCancel,
@@ -54,6 +60,50 @@ export default async function processOpenQrUrl(
 ) {
   const tx = window.static_translate
 
+  if (url.toLowerCase().startsWith('mailto:')) {
+    log.debug('processing mailto url:', url)
+    try {
+      const mailto = parseMailto(url)
+      const messageText = mailto.subject
+        ? mailto.subject + (mailto.body ? '\n\n' + mailto.body : '')
+        : mailto.body
+
+      if (mailto.to) {
+        let contactId = await DeltaBackend.call(
+          'contacts.lookupContactIdByAddr',
+          mailto.to
+        )
+        if (contactId == 0) {
+          contactId = await DeltaBackend.call(
+            'contacts.createContact',
+            mailto.to
+          )
+        }
+        const chatId = await DeltaBackend.call(
+          'contacts.getDMChatId',
+          contactId
+        )
+        if (messageText) {
+          await doMailtoAction(chatId, messageText)
+        } else {
+          selectChat(chatId)
+        }
+      } else {
+        if (messageText) {
+          window.__openDialog(MailtoDialog, { messageText })
+        }
+      }
+      callback && callback()
+    } catch (error) {
+      log.error('mailto decoding error', error)
+      window.__openDialog('AlertDialog', {
+        message: tx('mailto_link_could_not_be_decoded', url),
+        cb: callback,
+      })
+    }
+    return
+  }
+
   const screen = window.__screen
 
   const processDialogId = window.__openDialog(ProcessQrCodeDialog)
@@ -64,7 +114,7 @@ export default async function processOpenQrUrl(
   if (checkQr === null || checkQr.state === QrState.Error) {
     closeProcessDialog()
     window.__openDialog('AlertDialog', {
-      message: tx('import_qr_error'),
+      message: tx('qrscan_failed'),
       cb: callback,
     })
     return
@@ -115,7 +165,7 @@ export default async function processOpenQrUrl(
     } catch (err) {
       closeProcessDialog()
       window.__openDialog('AlertDialog', {
-        message: tx('import_qr_error') + ': ' + err,
+        message: tx('qrscan_failed') + ': ' + err,
         cb: callback,
       })
       return

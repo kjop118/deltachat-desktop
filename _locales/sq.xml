@@ -4,6 +4,7 @@
     <string name="app_name">Delta Chat</string>
     <string name="ok">OK</string>
     <string name="cancel">Anuloje</string>
+    <string name="clear_search">Spastroje kërkimin</string>
     <string name="yes">Po</string>
     <string name="no">Jo</string>
     <string name="select">Përzgjidhni</string>
@@ -40,6 +41,11 @@
     <string name="main_menu">Menuja kryesore</string>
     <string name="start_chat">Nisni fjalosje</string>
     <string name="show_full_message">Shfaq mesazhin e plotë…</string>
+    <string name="show_full_message_in_browser">Shfaq mesazh të plotë në shfletues…</string>
+    <!-- this is shown as placeholder when something is loading at some places -->
+    <string name="loading">Po ngarkohet…</string>
+    <string name="hide">Fshihe</string>
+    <string name="activate">Aktivizoje</string>
     <string name="load_remote_content">Ngarko figura të largëta</string>
     <!-- possible answers to the question are: Never, Always, Once -->
     <string name="load_remote_content_ask">Figurat e largëta mund të përdoren për t’ju ndjekur.\n\nRregullimi lejon gjithashtu të ngarkohen shkronja dhe lëndë tjetër. Edhe nëse është e çaktivizuar, prapë mund të shihni figura të trupëzuara ose të ruajtura në fshehtinë.\n\nTë ngarkohen figura të largëta?</string>
@@ -112,6 +118,7 @@
     <string name="images">Figura</string>
     <string name="audio">Audio</string>
     <string name="voice_message">Mesazh zanor</string>
+    <string name="forwarded">Përcjellë</string>
     <string name="forwarded_message">Mesazhi u përcoll</string>
     <!-- %1$s will be replaced by the name or the email-address of the person who has forwarded the message -->
     <string name="forwarded_by">Përcjellë nga %1$s</string>
@@ -120,6 +127,8 @@
     <string name="contact">Kontakt</string>
     <string name="verified_contact">Kontakt i verifikuar</string>
     <string name="camera">Kamerë</string>
+    <string name="switch_camera">Ndërro kamera</string>
+    <string name="toggle_fullscreen">Kalo në / Dil nga mënyra sa krejt ekrani</string>
     <string name="location">Vendndodhje</string>
     <string name="gallery">Galeri</string>
     <string name="images_and_videos">Figura dhe video</string>
@@ -175,6 +184,8 @@
     <string name="menu_copy_to_clipboard">Kopjoje në të papastër</string>
     <string name="menu_copy_selection_to_clipboard">Kopjoje përzgjedhjen</string>
     <string name="menu_copy_link_to_clipboard">Kopjoje lidhjen</string>
+    <string name="menu_copy_text_to_clipboard">Kopjo tekstin</string>
+    <string name="menu_copy_image_to_clipboard">Kopjo figurën</string>
     <string name="paste_from_clipboard">Ngjite prej të papastre</string>
     <string name="menu_forward">Përcille mesazhin</string>
     <string name="menu_resend">Ridërgoje mesazhin</string>
@@ -195,6 +206,7 @@
     <string name="menu_scroll_to_bottom">Rrëshqit drejt fundit</string>
     <string name="menu_scroll_to_top">Rrëshqit sipër në krye</string>
     <string name="menu_help">Nidhmë</string>
+    <string name="privacy_policy">Rregulla Privatësie</string>
     <string name="menu_select_all">Përzgjidhi krejt</string>
     <string name="select_more">Përzgjidhni më tepër</string>
     <string name="menu_expand">Zgjeroje</string>
@@ -207,6 +219,12 @@
     <string name="menu_zoom_in">Zmadhim</string>
     <string name="menu_zoom_out">Zvogëlim</string>
     <string name="menu_save_log">Ruaje regjistrin</string>
+    <string name="menu_more_options">Më tepër mundësi</string>
+    <string name="menu_learn_spelling">Mëso drejtshkrim</string>
+    <string name="menu_chat_audit_log">Regjistër Auditimi Fjalosjeje</string>
+    <string name="jump_to_message">Hidhu te mesazh</string>
+    <string name="copy_json">Kopjo JSON</string>
+    <string name="replace_draft">Zëvendëso skicë</string>
     <string name="title_share_location">Jepua vendndodhjen krejt anëtarëve të grupit</string>
     <string name="device_talk">Mesazhe Pajisjeje</string>
     <string name="device_talk_subtitle">Mesazhe të prodhuar lokalisht</string>
@@ -264,6 +282,7 @@
         <item quantity="one">Të fshihet %d fjalosje? S’do të duket më te lista e bisedave, mesazhet e saj do të mbeten te shërbyesi.</item>
         <item quantity="other">Të fshihen %d fjalosje? S\’do të duken më te lista e fjalosjeve, mesazhet e tyre do të mbeten te shërbyesi.</item>
     </plurals>
+    <string name="ask_delete_message">Jeni i sigurt se doni të fshihet ky mesazh?</string>
     <plurals name="ask_delete_messages">
         <item quantity="one">Të fshihet %d mesazh këtu dhe te shërbyesi?</item>
         <item quantity="other">Të fshihen %d mesazhe këtu dhe te shërbyesi?</item>
@@ -331,18 +350,35 @@
     <string name="messaging_disabled_not_in_group">S’mund të shkruani, ngaqë s’jeni në këtë grup. Për t’u bërë pjesë, kërkojani një anëtari tjetër.</string>
     <string name="messaging_disabled_device_chat">Kjo fjalosje përmban mesazhe të prodhuar lokalisht. Ndaj s’mund të shkruani ndonjë mesazh.</string>
     <string name="messaging_disabled_deaddrop">Që të pranoni apo hidhni tej një kërkesë kontakti, klikoni mbi një mesazh</string>
+    <string name="messaging_disabled_mailing_list">Dërgimi i mesazheve në lista postimesh nuk mbulohet ende</string>
     <string name="cannot_display_unsuported_file_type">S’mund të shfaqet ky lloj kartelash: %s</string>
     <string name="attachment_failed_to_load">S’u arrit të ngarkohet bashkëngjitje</string>
+    <!-- For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues -->
+    <string name="lock_recording">Kyçe incizimin</string>
+
     <!-- mailing lists -->
     <string name="mailing_list">Listë postimesh</string>
     <string name="ask_show_mailing_list">Të shfaqet lista e postimeve \"%1$s\"?</string>
-
+    <string name="mailing_list_profile_info">Ndryshime në emër dhe figurë liste postimesh aplikohen vetëm në këtë pajisje.</string>
 
     <!-- map -->
     <string name="filter_map_on_time">Shfaq vendndodhje në rrjedhë kohore</string>
     <string name="show_location_traces">Shfaq gjurmë</string>
     <string name="add_poi">Dërgo pikë interesi</string>
 
+    <!-- chat audit log -->
+    <string name="chat_audit_log_empty_message">Mesazhet e sistemit në këtë fjalosje do të shfaqen këtu</string>
+    <string name="chat_audit_log_title">Regjistër Auditimi Fjalosjeje %1$s</string>
+    <string name="chat_audit_log_description">Kjo pamje ju shfaq vetëm mesazhe sistemi dhe informacionesh. E dobishme për gjetjen e veprimeve të fundit pa u dashur të parakalohet nëpër mjaft mesazhe normale.</string>
+
+    <!-- punycode warning / labeled links -->
+    <!-- placeholder is domain/hostname that should be trusted -->
+    <string name="open_external_url_trust_domain">Mos pyet sërish për %1$s</string>
+    <string name="puny_code_warning_header">U pikas lidhje e dyshimtë</string>
+    <!-- placeholder contains the hostname converted to ascii -->
+    <string name="puny_code_warning_question">Jeni i sigurt se doni të vizitohet %1$s?</string>
+    <!-- this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii -->
+    <string name="puny_code_warning_description">Ndoqët një lidhje e cila mund të jetë duke shfaqur keq shenja, duke përdorur të ngjashme prej alfabetesh të tjerë. Ndjekja e lidhjes së  quajtur %1$s do të shpjerë te %2$s, çka është normale për shenja alfabetesh jo latinë. Nëse s’prisnit shenja të tilla, kjo lidhje mund të jetë e dëmshme</string>
 
     <!-- search -->
     <string name="search">Kërko</string>
@@ -531,7 +567,8 @@
     <string name="profile_image_select">Përzgjidhni figurë profili</string>
     <string name="select_your_new_profile_image">Përzgjidhni figurën tuaj të re të profilit</string>
     <string name="profile_image_delete">Fshini figurën e profilit</string>
-
+    <string name="pref_show_tray_icon">Shfaq ikonë paneli</string>
+    <string name="pref_edit_profile">Përpunoni profil</string>
 
     <!-- Emoji picker and categories -->
     <string name="emoji_search_results">Përfundime kërkimi</string>
@@ -669,7 +706,10 @@
     <string name="contact_setup_changed">U ndryshua rregullimi për %1$s</string>
     <string name="verified_group_explain">Grupet e verifikuara (eksperimentale) furnizojnë siguri kundër sulmesh aktive. Anëtarët janë të verifikuar me një faktor të dytë nga anëtarë të tjerë dhe mesazhet janë përherë të fshehtëzuara skaj më skaj.</string>
     <string name="copy_qr_data_success">URL-ja QR u kopjua në të papastër</string>
-
+    <string name="mailto_dialog_header_select_chat">Përzgjidhni fjalosje ku të dërgohet mesazhi</string>
+    <!-- first placeholder is the name of the chat -->
+    <string name="mailto_dialog_confirm_replace_draft">%1$s ka tashmë një mesazh skicë, doni të zëvendësohet?</string>
+    <string name="mailto_link_could_not_be_decoded">s’u shkodua dot lidhje mailto: %1$s</string>
 
     <!-- notifications  -->
     <string name="notify_n_messages_in_m_chats">%1$d mesazhe të rinj në %2$d fjalosje</string>
@@ -694,6 +734,11 @@
 
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_draw_anywhere_to_blur">Që të turbullohet, vizatoni kudo qoftë</string>
+    <string name="ImageEditorHud_add_text">Shtoni tekst</string>
+    <string name="ImageEditorHud_blur">Turbulloje</string>
+    <string name="ImageEditorHud_crop">Qethe</string>
+    <string name="ImageEditorHud_flip">Ktheje në anë tjetër</string>
+    <string name="ImageEditorHud_rotate">Rrotulloje</string>
 
     <!-- dc_str_* resources -->
     <string name="encrypted_message">Mesazh i fshehtëzuar</string>
@@ -721,6 +766,8 @@
     <string name="global_menu_help_contribute_desktop">Jepni ndihmesë në GitHub</string>
     <string name="global_menu_help_report_desktop">Njoftoni një Problem</string>
     <string name="global_menu_help_about_desktop">Rreth Delta Chat-it</string>
+    <string name="global_menu_file_open_desktop">Hap Fjalosje Delta</string>
+    <string name="global_menu_minimize_to_tray">Minimizoje</string>
     <string name="no_chat_selected_suggestion_desktop">Përzgjidhni një fjalosje ose krijoni një të tillë të re</string>
     <string name="write_message_desktop">Shkruani një mesazh</string>
     <string name="encryption_info_title_desktop">Të dhëna fshehtëzimi</string>
@@ -766,6 +813,9 @@
     <string name="menu.view.developer.open.log.folder">Hap Dosje Regjistrash</string>
     <string name="menu.view.developer.open.current.log.file">Hap Kartelën Regjistër të Tanishme</string>
     <string name="user_location_permission_explanation">Që të mund të shfaqë dhe ndajë me të tjerët vendndodhjen tuaj, Delta Chat lyp lejen vendore.</string>
+    <string name="explain_desktop_minimized_disabled_tray_pref">Ikona e panelit s’mund të çaktivizohet, ngaqë Delta Chat qe nisur me mundësinë --minimized.</string>
+    <string name="no_spellcheck_suggestions_found">S’u gjetën sugjerimi drejtshkrimi.</string>
+    <string name="show_window">Shfaq Dritare</string>
 
     <!-- accessibility, the general idea is to use the normal strings for accessibility hints wherever possible -->
     <string name="a11y_delivery_status_error">Gjendje dërgimi: Gabim</string>
@@ -797,6 +847,6 @@
     <string name="pref_reliable_service_explain">Lyp një njoftim permanent</string>
     <string name="perm_enable_bg_reminder_title">Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.</string>
     <string name="perm_enable_bg_already_done">E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.</string>
-    <string name="update_1_14_android">Disa gjëra për t’u theksuar te përditësimi 1.14:\n\n🧹 Fërkojeni për t’u përgjigjur: Për t’ju përgjigjur një mesazhi të caktuar, fërkojeni për djathtas (jo këtu! këtu s’përgjigjeni dot 😛) Do të shihni një si punë citimi sipër rreshtit të hartuesit dhe mund të vazhdoni të shkruani mesazhin tuaj si zakonisht.\n\n🔥 Mesazhe që treten ­- ka ardhur koha 😀. Çfarëdo fjalosje tanimë mund të formësohet që të fshijë pas njëfarë kohe mesazhet e dërguar dhe të marrë. Thjesht përzgjidhni \"Tretje mesazhesh\" që nga menuja e fjalosjes (sërish: jo këtu)\n\n👆 Fjalosjet hapen me mesazhin e parë të palexuar\n\n💾 Përcillni gjëra te \"Mesazhe të ruajtur\" drejtpërdrejt dhe më shpejt (kjo mund të provohet këtu: prekeni paksa më gjatë këtë mesazh dhe mandej shigjetën sipër djathtas)\n\n🎃 Së fundi, kemi tmerruar shumë të meta! Shumë prej tyre qenë kaq shumë të tmerruara, sa s’do të kthehen më.</string>
+    <string name="update_1_20">U përmirësua përputhshmëri email-i në versionin 1.20:\n\n📫 Lexoni lista postimesh\n📭 Lexoni email-e HTML\n📪 Trajtim i bukur adresash asistence\n📫 U ndreqën mjaft yçkla të mëdha dhe vockla\n\nLexoni postimin tonë të ri në blog mbi këto hapa të para drejt email-it dhe më tepër:</string>
 
 </resources>

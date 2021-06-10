@@ -4,6 +4,7 @@
     <string name="app_name">Delta Chat</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
+    <string name="clear_search">Eliminar busca</string>
     <string name="yes">Si</string>
     <string name="no">Non</string>
     <string name="select">Seleccionar</string>
@@ -40,6 +41,11 @@
     <string name="main_menu">Menú principal</string>
     <string name="start_chat">Inciar chat</string>
     <string name="show_full_message">Mostrar mensaxe completa...</string>
+    <string name="show_full_message_in_browser">Mostrar mensaxe completa no navegador...</string>
+    <!-- this is shown as placeholder when something is loading at some places -->
+    <string name="loading">Cargando...</string>
+    <string name="hide">Ocultar</string>
+    <string name="activate">Activar</string>
     <string name="load_remote_content">Cargar imaxes remotas</string>
     <!-- possible answers to the question are: Never, Always, Once -->
     <string name="load_remote_content_ask">As imaxes remotas poden ser utilizadas para rastrexarte.\n\nO axuste tamén permite cargar tipografías e outro contido. Incluso estando desactivado, é posible ver as imaxes gardadas na caché.\n\nCargar imaxes remotas?</string>
@@ -112,6 +118,7 @@
     <string name="images">Imaxes</string>
     <string name="audio">Audio</string>
     <string name="voice_message">Mensaxe de voz</string>
+    <string name="forwarded">Reenviada</string>
     <string name="forwarded_message">Mensaxe reenviado</string>
     <!-- %1$s will be replaced by the name or the email-address of the person who has forwarded the message -->
     <string name="forwarded_by">Reenviado por %1$s</string>
@@ -120,6 +127,10 @@
     <string name="contact">Contacto</string>
     <string name="verified_contact">Contacto verificado</string>
     <string name="camera">Cámara</string>
+    <!-- "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls -->
+    <string name="capture">Capturar</string>
+    <string name="switch_camera">Cambiar de cámara</string>
+    <string name="toggle_fullscreen">Activar modo de pantalla completa</string>
     <string name="location">Localización</string>
     <string name="gallery">Galería</string>
     <string name="images_and_videos">Imaxes e vídeos</string>
@@ -176,6 +187,8 @@
     <string name="menu_copy_to_clipboard">Copiar ao portaretallos</string>
     <string name="menu_copy_selection_to_clipboard">Copiar selección</string>
     <string name="menu_copy_link_to_clipboard">Copiar ligazón</string>
+    <string name="menu_copy_text_to_clipboard">Copiar texto</string>
+    <string name="menu_copy_image_to_clipboard">Copiar imaxe</string>
     <string name="paste_from_clipboard">Pegar desde portapapeis</string>
     <string name="menu_forward">Reenviar mensaxe</string>
     <string name="menu_resend">Voltar a enviar mensaxes</string>
@@ -196,6 +209,7 @@
     <string name="menu_scroll_to_bottom">Moverse abaixo</string>
     <string name="menu_scroll_to_top">Moverse arriba</string>
     <string name="menu_help">Axuda</string>
+    <string name="privacy_policy">Política de Privacidade</string>
     <string name="menu_select_all">Escoller todo</string>
     <string name="select_more">Elexir máis</string>
     <string name="menu_expand">Despregar</string>
@@ -208,6 +222,12 @@
     <string name="menu_zoom_in">Aumentar</string>
     <string name="menu_zoom_out">Diminuir</string>
     <string name="menu_save_log">Gardar rexistro</string>
+    <string name="menu_more_options">Máis opcións</string>
+    <string name="menu_learn_spelling">Aprender palabras</string>
+    <string name="menu_chat_audit_log">Rexistro de auditoría do chat</string>
+    <string name="jump_to_message">Ir á mensaxe</string>
+    <string name="copy_json">Copiar JSON</string>
+    <string name="replace_draft">Substituír borrador</string>
     <string name="title_share_location">Compartir localización cos membros do grupo</string>
     <string name="device_talk">Mensaxes do dispositivo</string>
     <string name="device_talk_subtitle">Mensaxes xeradas localmente</string>
@@ -265,6 +285,7 @@
         <item quantity="one">Eliminar %d conversa? Non se mostrará na lista de conversas, as súas mensaxes permanecerán no servidor.</item>
         <item quantity="other">Eliminar %d conversas? Non se mostrarán máis na listas de conversas, as mensaxes permanecerán no servidor.</item>
     </plurals>
+    <string name="ask_delete_message">Tes a certeza de querer eliminar esta mensaxe?</string>
     <plurals name="ask_delete_messages">
         <item quantity="one">Eliminar %d mensaxe aquí e no servidor?</item>
         <item quantity="other">Eliminar %d mensaxes aquí e no servidor?</item>
@@ -332,6 +353,7 @@
     <string name="messaging_disabled_not_in_group">Non podes escribir porque non estás no grupo. Para unirte, solicítallo a outro membro.</string>
     <string name="messaging_disabled_device_chat">A conversa contén mensaxes creados localmente. Polo tanto non podes escribir ningunha mensaxe.</string>
     <string name="messaging_disabled_deaddrop">Preme nunha mensaxe para aceptar ou denegar a solicitude de contacto</string>
+    <string name="messaging_disabled_mailing_list">Aínda non está soportado o envío de emails a listas de correo</string>
     <string name="cannot_display_unsuported_file_type">Non se pode motrar este tipo de ficheiro: %s</string>
     <string name="attachment_failed_to_load">Erro ao cargar o anexo</string>
     <!-- For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues -->
@@ -340,13 +362,26 @@
     <!-- mailing lists -->
     <string name="mailing_list">Lista de correo</string>
     <string name="ask_show_mailing_list">Mostrar lista de correo \"%1$s\"?</string>
-
+    <string name="mailing_list_profile_info">Cambios no nome da lista de correo e imaxe só se aplican neste dispositivo.</string>
 
     <!-- map -->
     <string name="filter_map_on_time">Mostrar localizacións no marco temporal</string>
     <string name="show_location_traces">Mostrar trazas</string>
     <string name="add_poi">Enviar punto de interese</string>
 
+    <!-- chat audit log -->
+    <string name="chat_audit_log_empty_message">As mensaxes de sistema deste chat aparecerán aquí</string>
+    <string name="chat_audit_log_title">Rexistro de auditoría para %1$s</string>
+    <string name="chat_audit_log_description">Esta vista só mostra mensaxes e info do sistema. Resulta útil para atopar as últimas accións sen ter que desprazarse a través das mensaxes normais.</string>
+
+    <!-- punycode warning / labeled links -->
+    <!-- placeholder is domain/hostname that should be trusted -->
+    <string name="open_external_url_trust_domain">Non solicitar de novo para %1$s</string>
+    <string name="puny_code_warning_header">Detectada ligazón sospeitosa</string>
+    <!-- placeholder contains the hostname converted to ascii -->
+    <string name="puny_code_warning_question">Tes a certeza de querer visitar %1$s?</string>
+    <!-- this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii -->
+    <string name="puny_code_warning_description">Seguiches unha ligazón que podería intentar confundirte utilizando caracteres que semellan parecidos en diferentes alfabetos. Premendo na ligazón %1$s vaite levar a %2$s que é nonrmal para carateres non-Latinos. Se non esperabas estos caracteres a ligazón podería ser maliciosa</string>
 
     <!-- search -->
     <string name="search">Buscar</string>
@@ -536,7 +571,8 @@
     <string name="profile_image_select">Elixe imaxe de perfil</string>
     <string name="select_your_new_profile_image">Elixe a túa nova imaxe de perfil</string>
     <string name="profile_image_delete">Elimina a imaxe de perfil</string>
-
+    <string name="pref_show_tray_icon">Mostrar icona na bandexa</string>
+    <string name="pref_edit_profile">Editar perfil</string>
 
     <!-- Emoji picker and categories -->
     <string name="emoji_search_results">Resultados da busca</string>
@@ -674,7 +710,10 @@
     <string name="contact_setup_changed">Cambiaron os axustes para %1$s.</string>
     <string name="verified_group_explain">Os grupos verificados (experimental) proporcionan seguridade contra ataques activos. As integrantes son verificadas cun segundo factor por outros membros e as mensaxes van sempre cifradas E2E.</string>
     <string name="copy_qr_data_success">Copiado o url do QR ao portapapeis</string>
-
+    <string name="mailto_dialog_header_select_chat">Elexir chat ao que enviar a mensaxe</string>
+    <!-- first placeholder is the name of the chat -->
+    <string name="mailto_dialog_confirm_replace_draft">%1$s xa ten unha mensaxe borrador, queres substituílo?</string>
+    <string name="mailto_link_could_not_be_decoded">a ligazón mailto non se puido descodificar: %1$s</string>
 
     <!-- notifications  -->
     <string name="notify_n_messages_in_m_chats">%1$d novas mensaxes en %2$d conversas</string>
@@ -699,6 +738,13 @@
 
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_draw_anywhere_to_blur">Debuxa para esborranchar</string>
+    <string name="ImageEditorHud_add_text">Engadir texto</string>
+    <string name="ImageEditorHud_blur">Esborranchar</string>
+    <string name="ImageEditorHud_brush_marker">Pincel marcador</string>
+    <string name="ImageEditorHud_brush_highlight">Pincel resaltar</string>
+    <string name="ImageEditorHud_crop">Recortar</string>
+    <string name="ImageEditorHud_flip">Voltear</string>
+    <string name="ImageEditorHud_rotate">Rotar</string>
 
     <!-- dc_str_* resources -->
     <string name="encrypted_message">Mensaxe cifrada</string>
@@ -726,6 +772,8 @@
     <string name="global_menu_help_contribute_desktop">Contribúe en GitHub</string>
     <string name="global_menu_help_report_desktop">Informa dun fallo</string>
     <string name="global_menu_help_about_desktop">Acerca de Delta Chat</string>
+    <string name="global_menu_file_open_desktop">Abrir Delta Chat</string>
+    <string name="global_menu_minimize_to_tray">Minimizar</string>
     <string name="no_chat_selected_suggestion_desktop">Escolle unha conversa ou crea unha nova</string>
     <string name="write_message_desktop">Escribe unha mensaxe</string>
     <string name="encryption_info_title_desktop">Info do cifrado</string>
@@ -771,6 +819,9 @@
     <string name="menu.view.developer.open.log.folder">Abrir cartafol do rexistro</string>
     <string name="menu.view.developer.open.current.log.file">Abrir ficheiro actual do rexistro</string>
     <string name="user_location_permission_explanation">Delta Chat precisa permiso para poder mostrar e compartir a túa localización.</string>
+    <string name="explain_desktop_minimized_disabled_tray_pref">A icona da bandexa do sistema non se pode desactivar porque Delta Chat iniciouse coa opción --minimized.</string>
+    <string name="no_spellcheck_suggestions_found">Non se atopan suxestións de escrita.</string>
+    <string name="show_window">Mostrar xanela</string>
 
     <!-- accessibility, the general idea is to use the normal strings for accessibility hints wherever possible -->
     <string name="a11y_delivery_status_error">Estado da entrega: Fallo</string>
@@ -802,6 +853,6 @@
     <string name="pref_reliable_service_explain">Require unha notificación permanente</string>
     <string name="perm_enable_bg_reminder_title">Toca aquí para recibir mensaxes mentras Delta Chat está en segundo plano.</string>
     <string name="perm_enable_bg_already_done">Xa permitiches que Delta Chat reciba mensaxes en segundo plano\n\nSe aínda así non recibes as mensaxes, por favor comproba os axustes do sistema.</string>
-    <string name="update_1_14_android">Destacados da actualización 1.14:\n\n🧹 Despraza para responder: para responder a unha mensaxe concreta, despraza hacia á dereita (non aquí! non podes responder aquí 😛) Verás a cita na parte superior da caixa de texto e poderás escribir como sempre.\n\n🔥 Mensaxes efémeras - chegou a hora 😀. Calquera conversa pódese configurar para eliminar as mensaxes enviadas e recibidas após un tempo. Elixe \"Mensaxes efémeras\" desde o menú da conversa (non aquí!)\n\n👆 Abrir conversa na primeira mensaxe non lida\n\n💾 Enviar cousas a \"Mensaxes gardadas\" directamente e máis rápido (esto pódelo probar aquí: mantén presa esta mensaxe e despois toca a flecha arriba-a-dereita)\n\n🎃 Para rematar, arranxamos moitos fallos! Moitos eran arrepiantes, non volverán.</string>
+    <string name="update_1_20">Na versión 1.20 melloramos a compatibilidade co email:\n\n📫 Ler listaxes de correo\n📭 Ler emails HTML\n📪 Mellor xestión dos enderezo de axuda\n📫 Arranxamos problemas e problemiños molestos\n\nLe o artigo no blog acerca destas melloras e máis:</string>
 
 </resources>

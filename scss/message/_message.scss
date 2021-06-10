@@ -116,11 +116,6 @@
         white-space: pre-wrap;
         cursor: default;
 
-        a {
-          text-decoration: underline;
-          color: var(--messageTextLink);
-        }
-
         margin-right: 10px;
 
         .double-line-break {
@@ -149,6 +144,13 @@
     width: auto;
     max-width: 100%;
     min-height: unset;
+  }
+
+  button.show-html {
+    border: none;
+    background-color: transparent;
+    padding-left: 0;
+    color: var(--colorPrimary);
   }
 }
 
@@ -235,18 +237,39 @@
 .message.type-sticker {
   .msg-container {
     background-color: transparent !important;
+
+    .author-wrapper,
+    .forwarded-indicator {
+      display: none;
+    }
+
+    .quote-background {
+      background: #01010159;
+      padding: 5px;
+      padding-left: 6px;
+      border-radius: 7px;
+
+      & > .quote {
+        margin: 0;
+
+        .quoted-text {
+          color: white;
+        }
+      }
+    }
   }
 
   .message-attachment-media {
     background-color: transparent;
     & > .attachment-content {
       margin-bottom: 20px;
+      cursor: default;
     }
   }
 
   .metadata {
     float: right;
-    padding: 4px 10px 1px 10px;
+    padding: 4px 8px 1px 8px;
     margin-bottom: -7px;
     background-color: #01010159;
     border-radius: 4px;
@@ -272,6 +295,12 @@
   .status-icon.read,
   .status-icon.delivered {
     background-color: white;
+  }
+}
+
+.message.has-html {
+  .text {
+    padding-bottom: 10px;
   }
 }
 
@@ -378,7 +407,8 @@
   //   background: rgba(0, 0, 0, 0.07);
   // }
 
-  .quote-author {
+  .author {
+    display: block;
     height: 13px;
     font-size: 13px;
     line-height: 13px;
@@ -386,7 +416,7 @@
     font-weight: 300;
   }
 
-  p {
+  .quoted-text {
     font-size: 12px;
     line-height: 12px;
     margin: 0;
@@ -402,6 +432,15 @@
     overflow: hidden;
     color: var(--messageQuotedText);
     white-space: pre-line;
+    user-select: text;
+  }
+}
+
+.quoted-text,
+.msg-body > .text {
+  a {
+    text-decoration: underline;
+    color: var(--messageTextLink);
   }
 }
 

@@ -17,6 +17,7 @@ import { ScreenContext } from '../../contexts'
 import { Avatar } from '../Avatar'
 import { useLogicVirtualChatList, ChatListPart } from '../chat/ChatList'
 import { AutoSizer } from 'react-virtualized'
+import MessageBody from '../message/MessageBody'
 
 const ProfileInfoName = ({
   name,
@@ -154,6 +155,16 @@ export default function ViewProfile(props: {
                   </button>
                 )}
               </div>
+              {contact.status != '' && (
+                <>
+                  <DeltaDialogContentTextSeperator
+                    text={tx('pref_default_status_label')}
+                  />
+                  <div className='status-text'>
+                    {MessageBody({ text: contact.status })}
+                  </div>
+                </>
+              )}
               <DeltaDialogContentTextSeperator
                 text={tx('profile_shared_chats')}
               />

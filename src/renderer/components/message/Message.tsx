@@ -9,6 +9,7 @@ import {
   openMessageHTML,
 } from './messageFunctions'
 import React, { useContext, useState, useEffect } from 'react'
+import reactStringReplace from 'react-string-replace'
 
 import classNames from 'classnames'
 import MessageBody from './MessageBody'
@@ -30,6 +31,8 @@ import { useChatStore2, ChatStoreDispatch } from '../../stores/chat'
 import { DeltaBackend } from '../../delta-remote'
 import { runtime } from '../../runtime'
 import { AvatarFromContact } from '../Avatar'
+import { openDeadDropDecisionDialog } from '../dialogs/DeadDrop'
+import { ConversationType } from './MessageList'
 // const log = getLogger('renderer/message')
 
 const Avatar = (
@@ -65,41 +68,21 @@ const Avatar = (
   }
 }
 
-const ContactName = (props: {
-  name: string
-  profileName?: string
-  color: string
-  onClick: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void
-}) => {
-  const { name, profileName, color, onClick } = props
-
-  const title = name
-  const shouldShowProfile = Boolean(profileName && !name)
-  const profileElement = shouldShowProfile ? (
-    <span style={{ color: color }}>~{profileName || ''}</span>
-  ) : null
-
-  return (
-    <span className='author' style={{ color: color }} onClick={onClick}>
-      {title}
-      {shouldShowProfile ? ' ' : null}
-      {profileElement}
-    </span>
-  )
-}
-
-const Author = (
+const AuthorName = (
   contact: DCContact,
-  onContactClick: (contact: DCContact) => void
+  onContactClick: (contact: DCContact) => void,
+  overrideSenderName?: string
 ) => {
   const { color, displayName } = contact
 
   return (
-    <ContactName
-      name={displayName}
-      color={color}
+    <span
+      className='author'
+      style={{ color: color }}
       onClick={() => onContactClick(contact)}
-    />
+    >
+      {overrideSenderName ? `~${overrideSenderName}` : displayName}
+    </span>
   )
 }
 
@@ -107,17 +90,28 @@ const ForwardedTitle = (
   contact: DCContact,
   onContactClick: (contact: DCContact) => void,
   direction: string,
-  conversationType: string
+  conversationType: ConversationType,
+  overrideSenderName?: string
 ) => {
   const tx = useTranslationFunction()
+
+  const { displayName, color } = contact
 
   return (
     <div
       className='forwarded-indicator'
       onClick={() => onContactClick(contact)}
     >
-      {conversationType === 'group' && direction !== 'outgoing'
-        ? tx('forwared_by', contact.displayName)
+      {conversationType.hasMultipleParticipants && direction !== 'outgoing'
+        ? reactStringReplace(
+            tx('forwarded_by', '$$forwarder$$'),
+            '$$forwarder$$',
+            () => (
+              <span style={{ color: color }}>
+                {overrideSenderName ? `~${overrideSenderName}` : displayName}
+              </span>
+            )
+          )
         : tx('forwarded_message')}
     </div>
   )
@@ -131,7 +125,6 @@ function buildContextMenu(
     message,
     text,
     conversationType,
-    isDeviceChat,
   }: // onRetrySend,
   {
     attachment: MessageTypeAttachment
@@ -139,8 +132,7 @@ function buildContextMenu(
     status: msgStatus
     message: MessageType | { msg: null }
     text?: string
-    conversationType: 'group' | 'direct'
-    isDeviceChat: boolean
+    conversationType: ConversationType
     // onRetrySend: Function
   },
   link: string,
@@ -158,12 +150,12 @@ function buildContextMenu(
 
   return [
     // Reply
-    !isDeviceChat && {
+    !conversationType.isDeviceChat && {
       label: tx('reply_noun'),
       action: setQuoteInDraft.bind(null, message.msg.id),
     },
     // Reply privately -> only show in groups, don't show on info messages or outgoing messages
-    conversationType === 'group' &&
+    conversationType.chatType === C.DC_CHAT_TYPE_GROUP &&
       message.msg.fromId > C.DC_CONTACT_ID_LAST_SPECIAL && {
         label: tx('reply_privately'),
         action: privateReply.bind(null, message.msg),
@@ -228,11 +220,10 @@ function buildContextMenu(
 
 const Message = (props: {
   message: MessageType
-  conversationType: 'group' | 'direct'
-  isDeviceChat: boolean
+  conversationType: ConversationType
   /* onRetrySend */
 }) => {
-  const { message, conversationType, isDeviceChat } = props
+  const { message, conversationType } = props
   const {
     id,
     direction,
@@ -264,7 +255,6 @@ const Message = (props: {
         message,
         text,
         conversationType,
-        isDeviceChat,
       },
       link,
       chatStoreDispatch
@@ -308,7 +298,7 @@ const Message = (props: {
       openDialog('EnterAutocryptSetupMessage', { message })
   } else if (isDeadDrop) {
     onClickMessageBody = () => {
-      openDialog('DeadDrop', message)
+      openDeadDropDecisionDialog(message)
     }
   }
 
@@ -351,11 +341,9 @@ const Message = (props: {
 
   const hasQuote = message.msg.quotedText !== null
 
-  const onMessageDoubleClick = (event: React.MouseEvent<HTMLInputElement>) => {
-    event.preventDefault()
-    setQuoteInDraft(message.msg.id)
-    window.getSelection().empty()
-  }
+  /** Whether to show author name and avatar */
+  const showAuthor =
+    conversationType.hasMultipleParticipants || message?.msg.overrideSenderName
 
   return (
     <div
@@ -365,11 +353,11 @@ const Message = (props: {
         direction,
         { 'type-sticker': viewType === C.DC_MSG_STICKER },
         { error: status === 'error' },
-        { forwarded: message.msg.isForwarded }
+        { forwarded: message.msg.isForwarded },
+        { 'has-html': hasHTML }
       )}
-      onDoubleClick={onMessageDoubleClick}
     >
-      {conversationType === 'group' &&
+      {showAuthor &&
         direction === 'incoming' &&
         Avatar(message.contact, onContactClick)}
       <div
@@ -382,16 +370,20 @@ const Message = (props: {
             message.contact,
             onContactClick,
             direction,
-            conversationType
+            conversationType,
+            message?.msg.overrideSenderName
           )}
         {!message.msg.isForwarded && (
           <div
             className={classNames('author-wrapper', {
-              'can-hide':
-                direction === 'outgoing' || conversationType === 'direct',
+              'can-hide': direction === 'outgoing' || !showAuthor,
             })}
           >
-            {Author(message.contact, onContactClick)}
+            {AuthorName(
+              message.contact,
+              onContactClick,
+              message?.msg.overrideSenderName
+            )}
           </div>
         )}
         <div
@@ -420,7 +412,10 @@ const Message = (props: {
           )}
           {content}
           {hasHTML && (
-            <button onClick={openMessageHTML.bind(null, message.id)}>
+            <button
+              onClick={openMessageHTML.bind(null, message.id)}
+              className='show-html'
+            >
               {tx('show_full_message_in_browser')}
             </button>
           )}
@@ -462,17 +457,23 @@ export const Quote = ({
   }, [quotedMessageId])
 
   return (
-    <div
-      className='quote has-message'
-      style={{ borderLeftColor: message && message.contact.color }}
-    >
+    <div className='quote-background'>
       <div
-        className='quote-author'
-        style={{ color: message && message.contact.color }}
+        className='quote has-message'
+        style={{ borderLeftColor: message && message.contact.color }}
       >
-        {message && message.contact.displayName}
+        <div className='quote-author'>
+          {message &&
+            AuthorName(
+              message.contact,
+              () => {},
+              message.msg.overrideSenderName
+            )}
+        </div>
+        <div className='quoted-text'>
+          <MessageBody text={quotedText} />
+        </div>
       </div>
-      <p>{quotedText}</p>
     </div>
   )
 }

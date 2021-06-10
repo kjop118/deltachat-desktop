@@ -86,16 +86,6 @@ class DeltaRemote {
     name: string
   ): Promise<number>
   call(
-    fnName: 'contacts.acceptContactRequest',
-    {
-      messageId,
-      contactId,
-    }: {
-      messageId: number
-      contactId: number
-    }
-  ): Promise<number>
-  call(
     fnName: 'contacts.createContact',
     email: string,
     name?: string
@@ -119,13 +109,13 @@ class DeltaRemote {
     listFlags: number,
     queryStr: string
   ): Promise<DCContact[]>
-  call(fnName: 'contacts.markNoticedContact', contactId: number): Promise<void>
   call(
     fnName: 'contacts.getChatIdByContactId',
     contactId: number
   ): Promise<number>
   call(fnName: 'contacts.getDMChatId', contactId: number): Promise<number>
   call(fnName: 'contacts.getEncryptionInfo', contactId: number): Promise<string>
+  call(fnName: 'contacts.lookupContactIdByAddr', email: string): Promise<number>
   // chat ---------------------------------------------------------------
   call(
     fnName: 'chat.getChatMedia',
@@ -182,6 +172,14 @@ class DeltaRemote {
     ephemeralTimer: number
   ): Promise<void>
   call(fnName: 'chat.sendVideoChatInvitation', chatId: number): Promise<number>
+  call(
+    fnName: 'chat.decideOnContactRequest',
+    messageId: number,
+    decision:
+      | C.DC_DECISION_START_CHAT
+      | C.DC_DECISION_NOT_NOW
+      | C.DC_DECISION_BLOCK
+  ): Promise<number>
   // locations ----------------------------------------------------------
   call(
     fnName: 'locations.setLocation',
@@ -260,7 +258,11 @@ class DeltaRemote {
     fnName: 'messageList.messageIdToJson',
     id: number
   ): Promise<{ msg: null } | MessageType>
-  call(fnName: 'messageList.getMessageIds', chatid: number): Promise<number[]>
+  call(
+    fnName: 'messageList.getMessageIds',
+    chatid: number,
+    flags?: number
+  ): Promise<number[]>
   call(
     fnName: 'messageList.forwardMessage',
     msgId: number,

@@ -4,6 +4,7 @@
     <string name="app_name">Delta Chat</string>
     <string name="ok">Oké</string>
     <string name="cancel">Annuleren</string>
+    <string name="clear_search">Zoekopdracht wissen</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
     <string name="select">Selecteren</string>
@@ -40,6 +41,11 @@
     <string name="main_menu">Hoofdmenu</string>
     <string name="start_chat">Gesprek beginnen</string>
     <string name="show_full_message">Volledige bericht tonen…</string>
+    <string name="show_full_message_in_browser">Volledige bericht in browser tonen…</string>
+    <!-- this is shown as placeholder when something is loading at some places -->
+    <string name="loading">Bezig met laden…</string>
+    <string name="hide">Verbergen</string>
+    <string name="activate">Inschakelen</string>
     <string name="load_remote_content">Externe afbeeldingen laden</string>
     <!-- possible answers to the question are: Never, Always, Once -->
     <string name="load_remote_content_ask">Externe afbeeldingen kunnen worden gebruikt om je gedrag te volgen.\n\nDeze instelling staat tevens toe om andere externe inhoud, zoals lettertypen, te laden, en zelfs na uitschakeling kunnen er ingesloten of gecachte afbeeldingen worden getoond.\n\nWeet je het zeker?</string>
@@ -49,7 +55,7 @@
     <string name="hide_password">Wachtwoord verbergen</string>
     <string name="not_now">Niet nu</string>
     <string name="never">Nooit</string>
-    <string name="one_moment">Even geduld...</string>
+    <string name="one_moment">Even geduld…</string>
     <string name="done">Klaar</string>
     <string name="undo">Ongedaan maken</string>
     <string name="offline">Offline</string>
@@ -112,6 +118,7 @@
     <string name="images">Afbeeldingen</string>
     <string name="audio">Audio</string>
     <string name="voice_message">Spraakbericht</string>
+    <string name="forwarded">Doorgestuurd</string>
     <string name="forwarded_message">Bericht doorgestuurd</string>
     <!-- %1$s will be replaced by the name or the email-address of the person who has forwarded the message -->
     <string name="forwarded_by">Doorgestuurd door %1$s</string>
@@ -120,6 +127,10 @@
     <string name="contact">Contactpersoon</string>
     <string name="verified_contact">Goedgekeurd contactpersoon</string>
     <string name="camera">Camera</string>
+    <!-- "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls -->
+    <string name="capture">Vastleggen</string>
+    <string name="switch_camera">Andere camera</string>
+    <string name="toggle_fullscreen">Beeldvullende modus aan/uit</string>
     <string name="location">Locatie</string>
     <string name="gallery">Galerij</string>
     <string name="images_and_videos">Foto\'s en video\'s</string>
@@ -176,6 +187,8 @@
     <string name="menu_copy_to_clipboard">Kopiëren naar klembord</string>
     <string name="menu_copy_selection_to_clipboard">Selectie kopiëren</string>
     <string name="menu_copy_link_to_clipboard">Link kopiëren</string>
+    <string name="menu_copy_text_to_clipboard">Tekst kopiëren</string>
+    <string name="menu_copy_image_to_clipboard">Afbeelding kopiëren</string>
     <string name="paste_from_clipboard">Plakken van klembord</string>
     <string name="menu_forward">Bericht doorsturen</string>
     <string name="menu_resend">Bericht opnieuw versturen</string>
@@ -196,6 +209,7 @@
     <string name="menu_scroll_to_bottom">Ga naar het einde</string>
     <string name="menu_scroll_to_top">Ga naar het begin</string>
     <string name="menu_help">Hulp</string>
+    <string name="privacy_policy">Privacybeleid</string>
     <string name="menu_select_all">Alles selecteren</string>
     <string name="select_more">Meer selecteren</string>
     <string name="menu_expand">Uitvouwen</string>
@@ -208,6 +222,12 @@
     <string name="menu_zoom_in">Inzoomen</string>
     <string name="menu_zoom_out">Uitzoomen</string>
     <string name="menu_save_log">Logboek opslaan</string>
+    <string name="menu_more_options">Meer opties</string>
+    <string name="menu_learn_spelling">Spelling leren</string>
+    <string name="menu_chat_audit_log">Gesprekslog</string>
+    <string name="jump_to_message">Ga na bericht</string>
+    <string name="copy_json">JSON-gegevens kopiëren</string>
+    <string name="replace_draft">Concept vervangen</string>
     <string name="title_share_location">Locatie delen met alle groepsleden</string>
     <string name="device_talk">Berichten op apparaat</string>
     <string name="device_talk_subtitle">Lokaal gegenereerde berichten</string>
@@ -265,6 +285,7 @@
         <item quantity="one">Wil je %d gesprek verwijderen? Het gesprek wordt niet langer getoond in de gesprekslijst, maar de berichten blijven bewaard op de server.</item>
         <item quantity="other">Wil je %d gesprekken verwijderen? Ze worden niet langer getoond in de gesprekslijst, maar de berichten blijven bewaard op de server.</item>
     </plurals>
+    <string name="ask_delete_message">Weet je zeker dat je dit bericht wilt verwijderen?</string>
     <plurals name="ask_delete_messages">
         <item quantity="one">Wil je %d bericht verwijderen, zowel hier als op de server?</item>
         <item quantity="other">Wil je %d berichten verwijderen, zowel hier als op de server?</item>
@@ -332,6 +353,7 @@
     <string name="messaging_disabled_not_in_group">Alleen leden kunnen berichten versturen aan deze groep. Vraag aan een lid om lid te worden.</string>
     <string name="messaging_disabled_device_chat">Je kunt geen berichten versturen omdat dit gesprek alleen lokaal gegenereerde berichten bevat.</string>
     <string name="messaging_disabled_deaddrop">Druk op een bericht om het contactpersoonverzoek goed te keuren of af te wijzen</string>
+    <string name="messaging_disabled_mailing_list">Het versturen van berichten naar mailinglijsten wordt nog niet ondersteund</string>
     <string name="cannot_display_unsuported_file_type">Het volgende bestandstype kan niet worden getoond: %s</string>
     <string name="attachment_failed_to_load">De bijlage kan niet worden geladen</string>
     <!-- For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues -->
@@ -340,13 +362,26 @@
     <!-- mailing lists -->
     <string name="mailing_list">Mailinglijst</string>
     <string name="ask_show_mailing_list">Wil je de mailinglijst \'%1$s\' tonen?</string>
-
+    <string name="mailing_list_profile_info">Wijzigingen aan de mailinglijstnaam en -afbeelding worden alleen op dit apparaat getoond.</string>
 
     <!-- map -->
     <string name="filter_map_on_time">Locaties tonen in tijdsbeeld</string>
     <string name="show_location_traces">Sporen tonen</string>
     <string name="add_poi">Afspraaklocatie versturen</string>
 
+    <!-- chat audit log -->
+    <string name="chat_audit_log_empty_message">Systeemberichten uit dit gesprek worden hier getoond</string>
+    <string name="chat_audit_log_title">Gesprekslog van %1$s</string>
+    <string name="chat_audit_log_description">In deze weergave zie je alleen systeem- en informatieberichten - zo kun je in één oogopslag zien welke gespreksacties je hebt uitgevoerd.</string>
+
+    <!-- punycode warning / labeled links -->
+    <!-- placeholder is domain/hostname that should be trusted -->
+    <string name="open_external_url_trust_domain">Niet meer vragen bij %1$s</string>
+    <string name="puny_code_warning_header">Verdachte link aangetroffen</string>
+    <!-- placeholder contains the hostname converted to ascii -->
+    <string name="puny_code_warning_question">Weet je zeker dat je %1$s wilt openen?</string>
+    <!-- this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii -->
+    <string name="puny_code_warning_description">Je hebt op een link gedrukt welke niet-overeenkomende tekens bevat uit andere talen. Door %1$s te openen kom je op %2$s terecht, welke niet-Latijnse tekens bevat. Als je deze tekens niet verwachtte, dan is de site mogelijk niet te vertrouwen.</string>
 
     <!-- search -->
     <string name="search">Zoeken</string>
@@ -429,7 +464,7 @@
 
     <!-- share and forward messages -->
     <!-- Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to -->
-    <string name="forward_to">Doorsturen naar...</string>
+    <string name="forward_to">Doorsturen naar…</string>
     <string name="share_multiple_attachments">Wil je %1$d bestanden delen in het gekozen gesprek?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.</string>
     <string name="share_multiple_attachments_multiple_chats">Wil je %1$d bestand(en) delen in %2$d gesprekken?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.</string>
     <string name="share_text_multiple_chats">Wil je deze tekst versturen naar %1$d gesprekken?\n\n\"%2$s\"</string>
@@ -536,7 +571,8 @@
     <string name="profile_image_select">Profielfoto kiezen</string>
     <string name="select_your_new_profile_image">Kies een nieuwe profielfoto</string>
     <string name="profile_image_delete">Profielfoto verwijderen</string>
-
+    <string name="pref_show_tray_icon">Systeemvakpictogram tonen</string>
+    <string name="pref_edit_profile">Profiel bewerken</string>
 
     <!-- Emoji picker and categories -->
     <string name="emoji_search_results">Zoekresultaten</string>
@@ -652,7 +688,7 @@
     <string name="qrscan_contains_text">Gescande QR-codetekst:\n\n %1$s</string>
     <string name="qrscan_contains_url">Gescande QR-code-url:\n\n %1$s</string>
     <string name="qrscan_fingerprint_label">Vingerafdruk</string>
-    <string name="qrscan_x_verified_introduce_myself">%1$s goedgekeurd; vertel iets over jezelf...</string>
+    <string name="qrscan_x_verified_introduce_myself">%1$s is goedgekeurd - vertel iets over jezelf…</string>
     <string name="qrshow_title">QR-uitnodigingscode</string>
     <string name="qrshow_x_joining">%1$s heeft deelgenomen.</string>
     <string name="qrshow_x_verified">%1$s is goedgekeurd.</string>
@@ -674,7 +710,10 @@
     <string name="contact_setup_changed">Gewijzigde instellingen voor %1$s</string>
     <string name="verified_group_explain">Goedgekeurde groepen (experimenteel) zijn extra beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd eind-tot-eind versleuteld.</string>
     <string name="copy_qr_data_success">De qr-url is gekopieerd naar het klembord</string>
-
+    <string name="mailto_dialog_header_select_chat">Kies in welk gesprek je dit bericht wilt delen</string>
+    <!-- first placeholder is the name of the chat -->
+    <string name="mailto_dialog_confirm_replace_draft">%1$s bevat al een concept. Wil je dit vervangen?</string>
+    <string name="mailto_link_could_not_be_decoded">De mailto-link kan niet worden ontcijferd: %1$s</string>
 
     <!-- notifications  -->
     <string name="notify_n_messages_in_m_chats">%1$d nieuwe berichten in %2$d gesprekken</string>
@@ -699,6 +738,13 @@
 
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_draw_anywhere_to_blur">Teken met je vinger om vervaging toe te passen</string>
+    <string name="ImageEditorHud_add_text">Tekst toevoegen</string>
+    <string name="ImageEditorHud_blur">Vervagen</string>
+    <string name="ImageEditorHud_brush_marker">Stift</string>
+    <string name="ImageEditorHud_brush_highlight">Markeerstift</string>
+    <string name="ImageEditorHud_crop">Bijsnijden</string>
+    <string name="ImageEditorHud_flip">Spiegelen</string>
+    <string name="ImageEditorHud_rotate">Draaien</string>
 
     <!-- dc_str_* resources -->
     <string name="encrypted_message">Versleuteld bericht</string>
@@ -708,7 +754,7 @@
     <string name="about_licensed_under_desktop">Deze software is vrijgegeven onder de GNU GPL versie 3 en de broncode is beschikbaar op GitHub.</string>
     <string name="welcome_desktop">Welkom bij Delta Chat</string>
     <string name="login_known_accounts_title_desktop">Bekende accounts</string>
-    <string name="global_menu_preferences_language_desktop">Kies een taal...</string>
+    <string name="global_menu_preferences_language_desktop">Taal</string>
     <string name="global_menu_file_desktop">Bestand</string>
     <string name="global_menu_file_quit_desktop">Afsluiten</string>
     <string name="global_menu_edit_desktop">Bewerken</string>
@@ -726,6 +772,8 @@
     <string name="global_menu_help_contribute_desktop">Draag bij op GitHub</string>
     <string name="global_menu_help_report_desktop">Meld een probleem</string>
     <string name="global_menu_help_about_desktop">Over Delta Chat</string>
+    <string name="global_menu_file_open_desktop">Delta Chat openen</string>
+    <string name="global_menu_minimize_to_tray">Minimaliseren</string>
     <string name="no_chat_selected_suggestion_desktop">Kies een gesprek of begin een gesprek</string>
     <string name="write_message_desktop">Schrijf een bericht</string>
     <string name="encryption_info_title_desktop">Versleutelingsinformatie</string>
@@ -771,6 +819,9 @@
     <string name="menu.view.developer.open.log.folder">Map met logbestanden openen</string>
     <string name="menu.view.developer.open.current.log.file">Huidig logbestand openen</string>
     <string name="user_location_permission_explanation">Delta Chat heeft het locatietoegangsrecht nodig om je locatie te tonen en delen.</string>
+    <string name="explain_desktop_minimized_disabled_tray_pref">Het systeemvakpictogram is uitgeschakeld omdat Delta Chat is gestart met de optie --minimized</string>
+    <string name="no_spellcheck_suggestions_found">Geen suggesties gevonden.</string>
+    <string name="show_window">Venster tonen</string>
 
     <!-- accessibility, the general idea is to use the normal strings for accessibility hints wherever possible -->
     <string name="a11y_delivery_status_error">Bezorgstatus: afleveren mislukt</string>
@@ -802,6 +853,6 @@
     <string name="pref_reliable_service_explain">Vereist een permanente melding</string>
     <string name="perm_enable_bg_reminder_title">Druk hier om berichten te ontvangen als Delta Chat niet geopend is.</string>
     <string name="perm_enable_bg_already_done">Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.</string>
-    <string name="update_1_14_android">Enkele hoogtepunten van de 1.14-update:\n\n🧹 Veeg om te beantwoorden: veeg het bericht waarop je wilt antwoorden naar rechts om een citaat in te voegen en te antwoorden (maar niet hier, want dan krijg je geen antwoord terug 😛).\n\n🔥 Verdwijnende berichten - eindelijk! 😀. In elk gesprek kun je nu verzonden en ontvangen berichten na een bepaalde tijd verwijderen met de optie \'Verdwijnende berichten\' in het gespreksmenu (ook hier geldt: niet in dit gesprek)\n\n👆 Gesprekken scrollen voortaan naar het eerste ongelezen bericht\n\n💾 Stuur items door naar \'Opgeslagen berichten\' (dit kan wél hier: houd dit bericht ingedrukt en druk op de pijl rechtsboven)\n\n🎃 Verder hebben we veel fouten angst aangejaagd - die zien we nooit meer terug!</string>
+    <string name="update_1_20">Verbeterde e-mailcompatibiliteit in versie 1.20:\n\n📫 Lees mailinglijsten\n📭 Lees html-e-mails\n📪 Betere afhandeling van ondersteuningsadressen\n📫 Vele grotere en kleinere problemen opgelost\n\nLees ons nieuwste blogartikel over deze eerste stappen naar e-mail en meer (Engels):</string>
 
 </resources>

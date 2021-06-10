@@ -33,12 +33,14 @@
 
 // Dialogs
 @import 'dialogs/_about';
+@import 'dialogs/_audit_log';
 @import 'dialogs/_autocrypt_setup.scss';
 @import 'dialogs/_delta-dialog';
 @import 'dialogs/_forward-message';
 @import 'dialogs/_group-styles';
 @import 'dialogs/_settings';
 @import 'dialogs/_view_profile';
+@import 'dialogs/_mailto-dialog';
 @import 'dialogs/_qr-import';
 @import 'dialogs/_ephermeral_message';
 @import 'dialogs/_qr-code';

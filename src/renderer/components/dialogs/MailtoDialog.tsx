@@ -6,19 +6,19 @@ import { PseudoListItemNoSearchResults } from '../helpers/PseudoListItem'
 import classNames from 'classnames'
 import { DeltaBackend } from '../../delta-remote'
 import { DialogProps } from './DialogController'
-import { MessageType } from '../../../shared/shared-types'
 
 import { C } from 'deltachat-node/dist/constants'
 import { ChatListPart, useLogicVirtualChatList } from '../chat/ChatList'
 import { AutoSizer } from 'react-virtualized'
 import { useChatList } from '../chat/ChatListHelpers'
+import { selectChat } from '../../stores/chat'
 
-export default function ForwardMessage(props: {
-  message: MessageType
+export default function MailtoDialog(props: {
+  messageText: string
   onClose: DialogProps['onClose']
 }) {
   const tx = window.static_translate
-  const { message, onClose } = props
+  const { onClose, messageText } = props
   const { chatListIds, queryStr, setQueryStr } = useChatList(
     C.DC_GCL_FOR_FORWARDING | C.DC_GCL_NO_SPECIALS
   )
@@ -26,37 +26,40 @@ export default function ForwardMessage(props: {
     chatListIds
   )
 
-  const onChatClick = (chatid: number) => {
-    DeltaBackend.call('messageList.forwardMessage', message.msg.id, chatid)
+  const onChatClick = async (chatId: number) => {
+    doMailtoAction(chatId, messageText)
     onClose()
   }
+
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setQueryStr(e.target.value)
 
-  const isOpen = !!message
   const noResults = chatListIds.length === 0 && queryStr !== ''
   return (
-    <DeltaDialogBase isOpen={isOpen} onClose={onClose} fixed>
-      <DeltaDialogHeader onClose={onClose}>
-        <input
-          className='search-input'
-          onChange={onSearchChange}
-          value={queryStr}
-          placeholder={tx('contacts_enter_name_or_email')}
-          autoFocus
-          spellCheck={false}
-        />
-      </DeltaDialogHeader>
+    <DeltaDialogBase isOpen={true} onClose={onClose} fixed>
+      <DeltaDialogHeader
+        onClose={onClose}
+        title={tx('mailto_dialog_header_select_chat')}
+      />
       <div
         className={classNames(
           Classes.DIALOG_BODY,
-          '.bp3-dialog-body-no-footer'
+          'bp3-dialog-body-no-footer',
+          'mailto-dialog'
         )}
       >
         <Card style={{ padding: '0px' }}>
-          <div className='forward-message-list-chat-list'>
+          <div className='select-chat-chat-list'>
+            <input
+              className='search-input'
+              onChange={onSearchChange}
+              value={queryStr}
+              placeholder={tx('contacts_enter_name_or_email')}
+              autoFocus
+              spellCheck={false}
+            />
             {noResults && <PseudoListItemNoSearchResults queryStr={queryStr} />}
-            <div style={{ height: noResults ? '0px' : '100%' }}>
+            <div style={noResults ? { height: '0px' } : {}} className='results'>
               <AutoSizer>
                 {({ width, height }) => (
                   <ChatListPart
@@ -86,4 +89,32 @@ export default function ForwardMessage(props: {
       </div>
     </DeltaDialogBase>
   )
+}
+
+export async function doMailtoAction(chatId: number, messageText: string) {
+  const chat = await DeltaBackend.call('chatList.getFullChatById', chatId)
+  const draft = await DeltaBackend.call('messageList.getDraft', chatId)
+
+  selectChat(chatId)
+
+  if (draft) {
+    // ask if the draft should be replaced
+    const continue_process = await new Promise((resolve, _reject) => {
+      window.__openDialog('ConfirmationDialog', {
+        message: window.static_translate(
+          'mailto_dialog_confirm_replace_draft',
+          chat.name
+        ),
+        confirmLabel: window.static_translate('replace_draft'),
+        cb: resolve,
+      })
+    })
+    if (!continue_process) {
+      return
+    }
+  }
+
+  await DeltaBackend.call('messageList.setDraft', chatId, { text: messageText })
+
+  window.__reloadDraft && window.__reloadDraft()
 }
