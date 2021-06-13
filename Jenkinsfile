@@ -77,19 +77,14 @@ More informations in attachment""",
         }
 
 
-        stage('Deploy') {
+	stage('Deploy') {
             
             steps{
                 echo 'Deploying'
 
                 dir('Docker'){
-                    sh 'docker tag chat:latest kjop118/chat:latest'
-                   
-                    sh 'docker save -o ./chatBuild.tar kjop118/chat:latest' //zapisanie obraz
-
-                }    
-
-                sh 'docker build -t ubuntu-deploy -f Dockerfile_ubuntu .' 
+                    sh 'docker build -t deploy-chat -f Dockerfile_deploy .' 
+                }     
                            
             }
             
